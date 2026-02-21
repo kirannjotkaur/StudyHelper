@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Study Helper App</title>
+ </style>
+body {
+  font-family: Arial, sans-serif;
+  background: #f2f4f8;
+  text-align: center;
+  padding: 20px;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+}
+
+.card {
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+input {
+  width: 90%;
+  padding: 8px;
+  margin: 5px 0;
+}
+
+button {
+  padding: 8px 12px;
+  margin: 5px;
+  border: none;
+  background: #4f46e5;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #4338ca;
+}
+
+pre {
+  text-align: left;
+  background: #eef;
+  padding: 10px;
+  border-radius: 5px;
+}
+<style>
+  <link rel="manifest" href="manifest.json">
+</head>
+<body>
+
+  <h1>📘 Study Helper App</h1>
+
+  <div class="container">
+
+    <div class="card">
+      <h2>Table Generator</h2>
+      <input type="number" id="tableNum" placeholder="Enter number">
+      <button onclick="generateTable()">Generate</button>
+      <pre id="tableResult"></pre>
+    </div>
+
+    <div class="card">
+      <h2>Days ↔ Hours</h2>
+      <input type="number" id="days" placeholder="Days">
+      <button onclick="daysToHours()">Days → Hours</button>
+
+      <input type="number" id="hours" placeholder="Hours">
+      <button onclick="hoursToDays()">Hours → Days</button>
+      <p id="dayHourResult"></p>
+    </div>
+
+    <div class="card">
+      <h2>Meter ↔ Kilometer</h2>
+      <input type="number" id="meters" placeholder="Meters">
+      <button onclick="mToKm()">M → KM</button>
+
+      <input type="number" id="kms" placeholder="Kilometers">
+      <button onclick="kmToM()">KM → M</button>
+      <p id="mkResult"></p>
+    </div>
+
+    <div class="card">
+      <h2>CM ↔ M</h2>
+      <input type="number" id="cms" placeholder="Centimeters">
+      <button onclick="cmToM()">CM → M</button>
+
+      <input type="number" id="ms" placeholder="Meters">
+      <button onclick="mToCm()">M → CM</button>
+      <p id="cmResult"></p>
+    </div>
+
+    <div class="card">
+      <h2>Hours + Minutes → Minutes</h2>
+      <input type="number" id="h" placeholder="Hours">
+      <input type="number" id="min" placeholder="Minutes">
+      <button onclick="toMinutes()">Convert</button>
+      <p id="minResult"></p>
+    </div>
+
+  </div>
+
+  <script>function generateTable() {
+  let num = document.getElementById("tableNum").value;
+  let result = "";
+  for (let i = 1; i <= 10; i++) {
+    result += `${num} x ${i} = ${num * i}\n`;
+  }
+  document.getElementById("tableResult").textContent = result;
+}
+
+function daysToHours() {
+  let days = document.getElementById("days").value;
+  document.getElementById("dayHourResult").textContent = `${days} days = ${days * 24} hours`;
+}
+
+function hoursToDays() {
+  let hours = document.getElementById("hours").value;
+  document.getElementById("dayHourResult").textContent = `${hours} hours = ${hours / 24} days`;
+}
+
+function mToKm() {
+  let m = document.getElementById("meters").value;
+  document.getElementById("mkResult").textContent = `${m} meters = ${m / 1000} km`;
+}
+
+function kmToM() {
+  let km = document.getElementById("kms").value;
+  document.getElementById("mkResult").textContent = `${km} km = ${km * 1000} meters`;
+}
+
+function cmToM() {
+  let cm = document.getElementById("cms").value;
+  document.getElementById("cmResult").textContent = `${cm} cm = ${cm / 100} m`;
+}
+
+function mToCm() {
+  let m = document.getElementById("ms").value;
+  document.getElementById("cmResult").textContent = `${m} m = ${m * 100} cm`;
+}
+
+function toMinutes() {
+  let h = document.getElementById("h").value;
+  let min = document.getElementById("min").value;
+  let total = (h * 60) + Number(min);
+  document.getElementById("minResult").textContent = `Total Minutes = ${total}`;
+}</script>
+
+  <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("sw.js");
+    }
+  </script>
+
+</body>
+</html>
